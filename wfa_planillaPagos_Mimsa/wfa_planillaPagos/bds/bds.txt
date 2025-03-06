@@ -1,0 +1,6 @@
+inz - Induzinc
+mega - Mega
+sf - Steel
+mim - Mimsa
+rum - Rumi
+tes - Mimsa_test
