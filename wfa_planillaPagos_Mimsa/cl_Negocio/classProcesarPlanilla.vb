@@ -433,7 +433,7 @@ Public Class classProcesarPlanilla
 
             End If
             'lo_payment.UserFields.Fields.Item("U_BYR_FECDEP").Value = po_planillaDet.FechaDeposito
-            If po_SBOCompany.CompanyDB <> "SBO_ComercialMendoza" And po_SBOCompany.CompanyDB <> "Z_MIMSA_19022025" Then
+            If po_SBOCompany.CompanyDB <> "SBO_ComercialMendoza" And po_SBOCompany.CompanyDB <> "Z_MIMSA_05032025" Then
                 lo_payment.UserFields.Fields.Item("U_BYR_FECDEP").Value = po_planillaDet.FechaDeposito
             End If
             ' Se asigna las propiedades de la cabecera del objeto Payment
@@ -469,16 +469,20 @@ Public Class classProcesarPlanilla
                 lo_payment.Invoices.AppliedFC = po_planillaDet.Imp_AplicadoME
 
 
-
             End If
+
+            Dim Tcfinanciero As Decimal
+            Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(Date.Today)
 
             ' Se asigna el monto y la cuenta con la que se realiza el pago
             lo_payment.TransferAccount = po_planillaDet.Cuenta
-            'lo_payment.TransferSum = po_planillaDet.MontoOp
-            lo_payment.TransferSum = "1856.01"
+            lo_payment.TransferSum = po_planillaDet.MontoOp
+
+            'cuando la factura es en dolares y el pago recibo o cobranza en Soles, se debe tomar    
 
 
-            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1.xml")
+
+            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1541.xml")
 
             ' Se realiza la inserción del objeto en la base de datos
             li_resultado = lo_payment.Add
