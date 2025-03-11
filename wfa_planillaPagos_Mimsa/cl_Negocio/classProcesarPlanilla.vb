@@ -388,6 +388,9 @@ Public Class classProcesarPlanilla
 
     Private Function int_procesarUnoAUno(ByVal po_planillaDet As entPlanilla_Lineas, ByVal po_SBOCompany As SAPbobsCOM.Company, ByVal po_planilla As entPlanilla) As Integer
         Try
+            'tc financiero
+            Dim Tcfinanciero As Decimal
+            Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(Date.Today)
 
             ' Se declara un objeto de tipo Payment del SDK de SAP Business One
             Dim lo_payment As SAPbobsCOM.Payments
@@ -440,7 +443,15 @@ Public Class classProcesarPlanilla
             lo_payment.CardCode = po_planillaDet.Codigo
             lo_payment.Remarks = Mid(po_planilla.Comentario, 1, 254)
             lo_payment.JournalRemarks = Mid(po_planilla.Comentario, 1, 50)
-            lo_payment.TransferReference = Mid("Planilla Nro. " & po_planillaDet.id.ToString, 1, 27)
+
+
+            'cambio jsolis se manda a la planilla de referencia.
+            'lo_payment.TransferReference = Mid("Planilla Nro. " & po_planillaDet.id.ToString, 1, 27)
+            lo_payment.TransferReference = Mid(po_planillaDet.Nro_Operacion, 1, 27)
+
+            lo_payment.UserFields.Fields.Item("U_GMI_PLANI").Value = Mid("Planilla Nro. " & po_planillaDet.id.ToString, 1, 27)
+
+
             lo_payment.DocCurrency = po_planillaDet.MonedaPag
 
 
@@ -450,12 +461,18 @@ Public Class classProcesarPlanilla
 
             ' Se verifica el tipo de planilla para asignar el tipo de cambio
             If lo_payment.DocCurrency <> str_obtMonLocal() Then
-                lo_payment.DocRate = po_planillaDet.Tipo_Cambio
+                'lo_payment.DocRate = po_planillaDet.Tipo_Cambio
+                lo_payment.DocRate = Tcfinanciero
             End If
 
             ' Se asigna las propiedades al objeto de detalle
             lo_payment.Invoices.InvoiceType = po_planillaDet.Tipo_Doc
             lo_payment.Invoices.DocEntry = po_planillaDet.Id_Doc
+
+            '
+            'lo_payment.Invoices.LineMemo = "2123"
+            'lo_payment.CounterReference
+
 
             ' Se verifica el tipo de transaccion para asignar el ID de la linea
             If lo_payment.Invoices.InvoiceType = BoRcptInvTypes.it_JournalEntry Then ' Si el documento a pagar es un asiento, se debe especificar en que linea del asiento se encuentra el saldo
@@ -471,18 +488,29 @@ Public Class classProcesarPlanilla
 
             End If
 
-            Dim Tcfinanciero As Decimal
-            Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(Date.Today)
+
+
 
             ' Se asigna el monto y la cuenta con la que se realiza el pago
             lo_payment.TransferAccount = po_planillaDet.Cuenta
-            lo_payment.TransferSum = po_planillaDet.MontoOp
+
+            'lo_payment.TransferSum = po_planillaDet.MontoOp
+
+            ''Si la noneda del documento es DOLAR y la cobranza es en SOL
+            ''lo_payment.TransferSum = po_planillaDet.MontoOp
+            If ((po_planillaDet.MonedaDoc = "USD") And (po_planillaDet.MonedaPag = "SOL")) Then
+                lo_payment.TransferSum = (po_planillaDet.Saldo * Tcfinanciero)
+            Else
+                lo_payment.TransferSum = po_planillaDet.MontoOp
+            End If
+
+
 
             'cuando la factura es en dolares y el pago recibo o cobranza en Soles, se debe tomar    
 
 
 
-            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1541.xml")
+            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1012.xml")
 
             ' Se realiza la inserción del objeto en la base de datos
             li_resultado = lo_payment.Add
@@ -648,7 +676,7 @@ Public Class classProcesarPlanilla
 
                     End If
                     'lo_payment.UserFields.Fields.Item("U_BYR_FECDEP").Value = lo_planillaDet.FechaDeposito
-                    If po_SBOCompany.CompanyDB <> "SBO_ComercialMendoza" Then
+                    If po_SBOCompany.CompanyDB <> "SBO_ComercialMendoza" And po_SBOCompany.CompanyDB <> "Z_MIMSA_05032025" Then
                         lo_payment.UserFields.Fields.Item("U_BYR_FECDEP").Value = lo_planillaDet.FechaDeposito
                     End If
                     ' Se asigna las propiedades de la cabecera del objeto Payment
