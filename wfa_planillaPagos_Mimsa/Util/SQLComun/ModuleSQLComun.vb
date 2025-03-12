@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Reflection
+Imports DevExpress.Internal.WinApi.Windows.UI.Notifications
 Imports Util
 
 Public Module ModuleSQLComun
@@ -59,6 +60,29 @@ Public Module ModuleSQLComun
             Return Nothing
         End Try
     End Function
+
+    Public Function dtb_ejecutarSQL_NETV1(ByVal ps_sql As String) As DataTable
+
+        Dim ls_query As String = ps_sql ' Se declara una variable para obtener el query que se pretende ejecutar en caso de que ocurra un error
+        Try
+            Using cn As New SqlConnection(sqlConexion.Conectar(S_Server, S_CompanyDB, S_DbUserName, S_SQLPassword))
+                Using cmd As New SqlCommand(ps_sql, cn)
+                    cmd.CommandTimeout = 300
+                    cn.Open()
+                    Using da As New SqlDataAdapter(cmd)
+                        Dim dt As New DataTable
+                        da.Fill(dt)
+                        Return dt
+                    End Using
+                End Using
+            End Using
+        Catch ex As SqlException
+            ' Manejo específico para excepciones de SQL
+            sub_mostrarMensaje(ex.Message & " - Query: <" & ls_query & ">", System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, S_NOMMODULO, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
+            Return Nothing
+        End Try
+    End Function
+
 
     Public Function str_ejecutarSQL_NET(ByVal ps_sql As String) As String
         Dim ls_query As String = ps_sql ' Se declara una variable para obtener el query que se pretende ejecutar en caso de que ocurra un error
@@ -314,6 +338,67 @@ Public Module ModuleSQLComun
         End Try
     End Function
 
+    Public Function strobtenercuentaGananciaDiferenciaTCv1() As String
+        Try
+
+            ' Se declara una variable para la cadena SQL
+            Dim ls_sql As String = "exec gmi_sp_cuentaGananciaDiferenciaTC "
+
+            ' Se realiza la consulta
+            Return dtb_ejecutarSQL_NETV1(ls_sql).Rows(0)(0)
+
+        Catch ex As Exception
+            MsgBox(System.Reflection.Assembly.GetExecutingAssembly.GetName.Name & "." & System.Reflection.MethodInfo.GetCurrentMethod.Name & ": " & ex.Message)
+            Return ""
+        End Try
+    End Function
+
+    Public Function strobtenercuentaGananciaDiferenciaTCv2() As String
+        'Public Function strobtenercuentaGananciaDiferenciaTCv2() As DataTable
+        Dim dt As New DataTable()
+        Dim aux As String
+        aux = String.Empty
+        Try
+            ' Crear la cadena de conexión usando la función Conectar
+            Dim connectionString As String = sqlConexion.Conectar(S_Server, S_CompanyDB, S_DbUserName, S_SQLPassword)
+
+            ' Crear la conexión a la base de datos
+            Using cn As New SqlConnection(connectionString)
+                ' Crear el comando para ejecutar el Stored Procedure
+                Using cmd As New SqlCommand("gmi_sp_cuentaPerdidaDiferenciaTC", cn)
+                    cmd.CommandType = CommandType.StoredProcedure ' Indicar que es un Stored Procedure
+
+                    '' Agregar el parámetro de tipo String
+                    'cmd.Parameters.AddWithValue(ps_paramName, ps_paramValue)
+
+                    ' Abrir la conexión
+                    cn.Open()
+
+                    ' Ejecutar el Stored Procedure y llenar un DataTable con los resultados
+                    Using da As New SqlDataAdapter(cmd)
+                        da.Fill(dt)
+                    End Using
+                End Using
+            End Using
+
+            ' Mostrar los resultados (ejemplo)
+            For Each row As DataRow In dt.Rows
+
+                Dim acctCode1 As String
+                aux = row("AcctCode").ToString()
+
+
+            Next
+
+        Catch ex As Exception
+            ' Manejar excepciones (puedes personalizar esto según tus necesidades)
+            Throw New Exception("Error al ejecutar el Stored Procedure: " & ex.Message)
+        End Try
+
+        ' Retornar el DataTable con los resultados
+        Return aux
+    End Function
+
     Public Function str_obtMonLocal() As String
         Try
 
@@ -329,6 +414,7 @@ Public Module ModuleSQLComun
         End Try
     End Function
 
+
     Public Function dtb_obtEstructuraTabla(ByVal ps_tabla As String) As DataTable
         Try
 
@@ -341,6 +427,22 @@ Public Module ModuleSQLComun
         Catch ex As Exception
             MsgBox(System.Reflection.Assembly.GetExecutingAssembly.GetName.Name & "." & System.Reflection.MethodInfo.GetCurrentMethod.Name & ": " & ex.Message)
             Return Nothing
+        End Try
+    End Function
+
+    'gmi_sp_cuentaGananciaDiferenciaTC
+
+    Public Function dbl_ÑcuentaGananciaDiferenciaTC() As String
+        Try
+
+            ' Se declara una variable para la cadena SQL
+            Dim ls_sql As String = "exec gmi_sp_cuentaGananciaDiferenciaTC"
+
+            ' Se realiza la consulta
+            Return dtb_ejecutarSQL_NET(ls_sql).Rows(0)(0)
+
+        Catch ex As Exception
+            Return ""
         End Try
     End Function
 
@@ -581,6 +683,40 @@ Public Module ModuleSQLComun
             Return ""
         End Try
     End Function
+
+
+
+    Public Function str_cuentaPerdidaDiferenciaTC() As String
+        Try
+
+            ' Se declara una variable para la cadena SQL
+            Dim ls_sql As String = "exec gmi_sp_cuentaPerdidaDiferenciaTC"
+
+            ' Se realiza la consulta
+            Return dtb_ejecutarSQL_NET(ls_sql).Rows(0)(0)
+
+        Catch ex As Exception
+            MsgBox(System.Reflection.Assembly.GetExecutingAssembly.GetName.Name & "." & System.Reflection.MethodInfo.GetCurrentMethod.Name & ": " & ex.Message)
+            Return ""
+        End Try
+    End Function
+
+    'A
+    Public Function str_cuentaGananciaDiferenciaTC(ByVal va1 As String) As String
+        Try
+
+            ' Se declara una variable para la cadena SQL
+            Dim ls_sql As String = "exec gmi_sp_cuentaGananciaDiferenciaTC '" & va1 & "'"
+
+            ' Se realiza la consulta
+            Return dtb_ejecutarSQL_NET(ls_sql).Rows(0)(0)
+
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
+
+
 
 
 

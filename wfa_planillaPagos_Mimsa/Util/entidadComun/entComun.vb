@@ -319,6 +319,18 @@ Public Class entComun
         Return ModuleSQLComun.dbl_obtenerTipoCambio(ps_moneda, ps_fecha)
     End Function
 
+    Public Shared Function dbl_obtenercuentaGananciaDiferenciaTC(ByVal val As String) As String
+        Return ModuleSQLComun.str_cuentaGananciaDiferenciaTC(val)
+    End Function
+
+    Public Shared Function str_obtenercuentaGananciaDiferenciaTCv1() As String
+        Return ModuleSQLComun.strobtenercuentaGananciaDiferenciaTCv1()
+    End Function
+
+    Public Shared Function str_obtenercuentaGananciaDiferenciaTCv2() As String
+        Return ModuleSQLComun.strobtenercuentaGananciaDiferenciaTCv2()
+    End Function
+
     Public Shared Function str_obtMonLocal() As String
         Return ModuleSQLComun.str_obtMonLocal()
     End Function

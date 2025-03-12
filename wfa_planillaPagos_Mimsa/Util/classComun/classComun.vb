@@ -1913,6 +1913,21 @@ Public Class classComun
         End Try
     End Function
 
+    'cuenta Ganancia Diferencia TC
+    Protected Function dbl_obtenercuentaGananciaDiferenciaTC(ByVal val1 As String) As String
+        Try
+
+            ' Se obtiene el tipo de cambio para la fecha y la moneda recibida
+            Dim cuentaGananciaDiferencia As String = entComun.dbl_obtenercuentaGananciaDiferenciaTC(val1)
+
+            Return cuentaGananciaDiferencia
+
+        Catch ex As Exception
+            sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
+            Return ""
+        End Try
+    End Function
+
     Protected Function dtb_obtDatosReporteConParams(ByVal ps_nomProc As String, Optional ByVal po_lstCtrParams As List(Of Control) = Nothing) As DataTable
         Try
 

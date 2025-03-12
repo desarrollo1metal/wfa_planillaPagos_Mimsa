@@ -338,6 +338,12 @@
     <Content Include="SQLProc\gmi_sp_actualizarNrosSAPPlaDet.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLProc\gmi_sp_cuentaPerdidaDiferenciaTC - Copia %282%29.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="SQLProc\gmi_sp_cuentaGananciaDiferenciaTC.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="SQLProc\gmi_sp_esPlanillaAbierta.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -414,6 +420,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLProc\gmi_sp_repPagosSinNroOper.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLProc\gmi_sp_cuentaPerdidaDiferenciaTC.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLProc\gmi_sp_verEstadoPeriodo.sql">

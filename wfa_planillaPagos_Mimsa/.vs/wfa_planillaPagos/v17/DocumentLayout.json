@@ -3,56 +3,68 @@
   "WorkspaceRootPath": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A1C83738-BAA0-479D-99BD-E2BB4054206F}|cl_Negocio\\cl_Negocio.vbproj|c:\\ti_mimsa\\cf\\wfaplanillapagos_mimsa\\wfa_planillapagos_mimsa\\wfa_planillapagos_mimsa\\cl_negocio\\classprocesarplanilla.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{A1C83738-BAA0-479D-99BD-E2BB4054206F}|cl_Negocio\\cl_Negocio.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_negocio\\classprocesarplanilla.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{A1C83738-BAA0-479D-99BD-E2BB4054206F}|cl_Negocio\\cl_Negocio.vbproj|solutionrelative:cl_negocio\\classprocesarplanilla.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\sqlcomun\\modulesqlcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|c:\\ti_mimsa\\cf\\wfaplanillapagos_mimsa\\wfa_planillapagos_mimsa\\wfa_planillapagos_mimsa\\util\\sqlcomun\\modulesqlcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\sqlcomun\\modulesqlcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\entidadcomun\\entcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\entidadcomun\\entcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\classcomun\\classcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\classcomun\\classcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\entidadcomun\\entcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\entidadcomun\\entcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FCF77B0D-FE5B-4F4F-92B9-67CDFDCBA912}|cl_AccesoDatos\\cl_AccesoDatos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_accesodatos\\sqlplanilla.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{FCF77B0D-FE5B-4F4F-92B9-67CDFDCBA912}|cl_AccesoDatos\\cl_AccesoDatos.vbproj|solutionrelative:cl_accesodatos\\sqlplanilla.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\sqlproc\\gmi_sp_obtenerbanco.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\sqlproc\\gmi_sp_obtenerbanco.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A1C83738-BAA0-479D-99BD-E2BB4054206F}|cl_Negocio\\cl_Negocio.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_negocio\\classinicio.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{A1C83738-BAA0-479D-99BD-E2BB4054206F}|cl_Negocio\\cl_Negocio.vbproj|solutionrelative:cl_negocio\\classinicio.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\sqlproc\\gmi_sp_cuentagananciadiferenciatc.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\sqlproc\\gmi_sp_cuentagananciadiferenciatc.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\moduleglobalform.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\moduleglobalform.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE46B331-B85E-489B-961B-715C1ECAD176}|cl_Entidad\\cl_Entidad.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_entidad\\entplanilla.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{EE46B331-B85E-489B-961B-715C1ECAD176}|cl_Entidad\\cl_Entidad.vbproj|solutionrelative:cl_entidad\\entplanilla.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\formcomun\\frmcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\formcomun\\frmcomun.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\conexion\\sqlconexion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\conexion\\sqlconexion.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\sqlproc\\gmi_sp_verexistecuentabancaria.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\sqlproc\\gmi_sp_verexistecuentabancaria.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\conn\\mim\\conn.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\conn\\mim\\conn.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\sqlproc\\gmi_plapagosdetalle.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\sqlproc\\gmi_plapagosdetalle.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\frmusuario.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\frmusuario.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\sqlproc\\gmi_sp_verestadoperiodo.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\sqlproc\\gmi_sp_verestadoperiodo.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\my project\\licenses.licx||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\my project\\licenses.licx||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\sqlproc\\gmi_plapagos.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\sqlproc\\gmi_plapagos.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\my project\\licenses.licx||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\my project\\licenses.licx||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\util\\usr_control\\uct_gridconbusqueda.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{A98A9512-4EF2-489D-A6B3-40A59E26F0F6}|Util\\Util.vbproj|solutionrelative:util\\usr_control\\uct_gridconbusqueda.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillapagos\\sqlproc\\gmi_sp_obtestadocuentappr.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5E41350B-1DE7-431F-AA31-FDA180EEBAFD}|wfa_planillaPagos\\wfa_planillaPagos.vbproj|solutionrelative:wfa_planillapagos\\sqlproc\\gmi_sp_obtestadocuentappr.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,13 +78,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "classInicio.vb",
               "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_Negocio\\classInicio.vb",
               "RelativeDocumentMoniker": "cl_Negocio\\classInicio.vb",
               "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_Negocio\\classInicio.vb",
               "RelativeToolTip": "cl_Negocio\\classInicio.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2025-02-27T15:48:43.244Z",
               "IsPinned": true
@@ -85,7 +97,7 @@
               "RelativeDocumentMoniker": "Util\\SQLComun\\ModuleSQLComun.vb",
               "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\SQLComun\\ModuleSQLComun.vb",
               "RelativeToolTip": "Util\\SQLComun\\ModuleSQLComun.vb",
-              "ViewState": "AgIAACwBAAAAAAAAAAAwwDwBAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAGUBAAAAAAAAAAAcwIMBAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2025-02-27T23:07:42.688Z",
               "IsPinned": true,
@@ -99,7 +111,7 @@
               "RelativeDocumentMoniker": "cl_Negocio\\classProcesarPlanilla.vb",
               "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_Negocio\\classProcesarPlanilla.vb",
               "RelativeToolTip": "cl_Negocio\\classProcesarPlanilla.vb",
-              "ViewState": "AgIAAMQBAAAAAAAAAADwv9ABAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAP0BAAAAAAAAAAAcwBcCAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2025-02-27T15:42:41.833Z",
               "IsPinned": true,
@@ -107,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "ModuleGlobalForm.vb",
               "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\ModuleGlobalForm.vb",
               "RelativeDocumentMoniker": "Util\\ModuleGlobalForm.vb",
@@ -120,28 +132,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "classComun.vb",
               "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\classComun\\classComun.vb",
               "RelativeDocumentMoniker": "Util\\classComun\\classComun.vb",
               "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\classComun\\classComun.vb",
               "RelativeToolTip": "Util\\classComun\\classComun.vb",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAwwIgCAAA9AAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAA2wFgHAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2025-02-28T21:58:09.598Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "frmComun.vb",
               "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\formComun\\frmComun.vb",
               "RelativeDocumentMoniker": "Util\\formComun\\frmComun.vb",
               "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\formComun\\frmComun.vb",
               "RelativeToolTip": "Util\\formComun\\frmComun.vb",
-              "ViewState": "AgIAAL0AAAAAAAAAAADgv88AAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAcwLYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2025-03-03T13:20:37.734Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "entComun.vb",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\entidadComun\\entComun.vb",
+              "RelativeDocumentMoniker": "Util\\entidadComun\\entComun.vb",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\entidadComun\\entComun.vb",
+              "RelativeToolTip": "Util\\entidadComun\\entComun.vb",
+              "ViewState": "AgIAADsBAAAAAAAAAAAewEoBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-11T16:41:36.934Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "gmi_sp_cuentaGananciaDiferenciaTC.sql ",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_cuentaGananciaDiferenciaTC.sql",
+              "RelativeDocumentMoniker": "wfa_planillaPagos\\SQLProc\\gmi_sp_cuentaGananciaDiferenciaTC.sql",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_cuentaGananciaDiferenciaTC.sql",
+              "RelativeToolTip": "wfa_planillaPagos\\SQLProc\\gmi_sp_cuentaGananciaDiferenciaTC.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-12T18:27:34.281Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "gmi_plaPagos.sql ",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_plaPagos.sql",
+              "RelativeDocumentMoniker": "wfa_planillaPagos\\SQLProc\\gmi_plaPagos.sql",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_plaPagos.sql",
+              "RelativeToolTip": "wfa_planillaPagos\\SQLProc\\gmi_plaPagos.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-12T19:53:15.154Z",
               "IsPinned": true
             },
             {
@@ -186,87 +237,82 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "entComun.vb",
-              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\entidadComun\\entComun.vb",
-              "RelativeDocumentMoniker": "Util\\entidadComun\\entComun.vb",
-              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\entidadComun\\entComun.vb",
-              "RelativeToolTip": "Util\\entidadComun\\entComun.vb",
-              "ViewState": "AgIAADEBAAAAAAAAAAAwwEEBAAAEAAAAAAAAAA==",
+              "DocumentIndex": 14,
+              "Title": "uct_gridConBusqueda.vb",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\usr_control\\uct_gridConBusqueda.vb",
+              "RelativeDocumentMoniker": "Util\\usr_control\\uct_gridConBusqueda.vb",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\usr_control\\uct_gridConBusqueda.vb",
+              "RelativeToolTip": "Util\\usr_control\\uct_gridConBusqueda.vb",
+              "ViewState": "AgIAAKcAAAAAAAAAAAAswA4CAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-02-27T22:49:46.231Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-12T20:17:41.658Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "entPlanilla.vb",
-              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_Entidad\\entPlanilla.vb",
-              "RelativeDocumentMoniker": "cl_Entidad\\entPlanilla.vb",
-              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_Entidad\\entPlanilla.vb",
-              "RelativeToolTip": "cl_Entidad\\entPlanilla.vb",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAlwBcAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-02-28T22:28:27.267Z"
+              "DocumentIndex": 15,
+              "Title": "gmi_sp_obtEstadoCuentaPPR.sql ",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_obtEstadoCuentaPPR.sql",
+              "RelativeDocumentMoniker": "wfa_planillaPagos\\SQLProc\\gmi_sp_obtEstadoCuentaPPR.sql",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_obtEstadoCuentaPPR.sql",
+              "RelativeToolTip": "wfa_planillaPagos\\SQLProc\\gmi_sp_obtEstadoCuentaPPR.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-12T20:12:05.169Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "sqlConexion.vb",
-              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\Conexion\\sqlConexion.vb",
-              "RelativeDocumentMoniker": "Util\\Conexion\\sqlConexion.vb",
-              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\Conexion\\sqlConexion.vb",
-              "RelativeToolTip": "Util\\Conexion\\sqlConexion.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-02-27T22:59:13.261Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "conn.txt",
-              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\conn\\mim\\conn.txt",
-              "RelativeDocumentMoniker": "wfa_planillaPagos\\conn\\mim\\conn.txt",
-              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\conn\\mim\\conn.txt",
-              "RelativeToolTip": "wfa_planillaPagos\\conn\\mim\\conn.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2025-02-27T22:52:39.786Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "frmUsuario.vb [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\frmUsuario.vb",
-              "RelativeDocumentMoniker": "wfa_planillaPagos\\frmUsuario.vb",
-              "ToolTip": "C:\\TI_MIMSA\\CF\\wfa_planillaPagos_Mimsa_v2\\wfa_planillaPagos\\frmUsuario.vb [Dise\u00F1o]",
-              "RelativeToolTip": "..\\..\\..\\wfa_planillaPagos_Mimsa_v2\\wfa_planillaPagos\\frmUsuario.vb [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-02-27T15:46:57.437Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "licenses.licx",
-              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\My Project\\licenses.licx",
-              "RelativeDocumentMoniker": "wfa_planillaPagos\\My Project\\licenses.licx",
-              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\My Project\\licenses.licx",
-              "RelativeToolTip": "wfa_planillaPagos\\My Project\\licenses.licx",
+              "DocumentIndex": 4,
+              "Title": "sqlPlanilla.vb",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_AccesoDatos\\sqlPlanilla.vb",
+              "RelativeDocumentMoniker": "cl_AccesoDatos\\sqlPlanilla.vb",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\cl_AccesoDatos\\sqlPlanilla.vb",
+              "RelativeToolTip": "cl_AccesoDatos\\sqlPlanilla.vb",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-02-27T15:40:39.865Z"
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-12T20:10:31.292Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "gmi_sp_ObtenerBanco.sql ",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_ObtenerBanco.sql",
+              "RelativeDocumentMoniker": "wfa_planillaPagos\\SQLProc\\gmi_sp_ObtenerBanco.sql",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_ObtenerBanco.sql",
+              "RelativeToolTip": "wfa_planillaPagos\\SQLProc\\gmi_sp_ObtenerBanco.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-12T19:53:42.696Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "licenses.licx",
-              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\My Project\\licenses.licx",
-              "RelativeDocumentMoniker": "Util\\My Project\\licenses.licx",
-              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\Util\\My Project\\licenses.licx",
-              "RelativeToolTip": "Util\\My Project\\licenses.licx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-02-27T15:35:49.814Z"
+              "Title": "gmi_plaPagosDetalle.sql ",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_plaPagosDetalle.sql",
+              "RelativeDocumentMoniker": "wfa_planillaPagos\\SQLProc\\gmi_plaPagosDetalle.sql",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_plaPagosDetalle.sql",
+              "RelativeToolTip": "wfa_planillaPagos\\SQLProc\\gmi_plaPagosDetalle.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-12T19:53:02.417Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "gmi_sp_verEstadoPeriodo.sql ",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_verEstadoPeriodo.sql",
+              "RelativeDocumentMoniker": "wfa_planillaPagos\\SQLProc\\gmi_sp_verEstadoPeriodo.sql",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_verEstadoPeriodo.sql",
+              "RelativeToolTip": "wfa_planillaPagos\\SQLProc\\gmi_sp_verEstadoPeriodo.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-12T19:33:01.052Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "gmi_sp_verExisteCuentaBancaria.sql ",
+              "DocumentMoniker": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_verExisteCuentaBancaria.sql",
+              "RelativeDocumentMoniker": "wfa_planillaPagos\\SQLProc\\gmi_sp_verExisteCuentaBancaria.sql",
+              "ToolTip": "C:\\TI_MIMSA\\CF\\wfaPlanillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos_Mimsa\\wfa_planillaPagos\\SQLProc\\gmi_sp_verExisteCuentaBancaria.sql",
+              "RelativeToolTip": "wfa_planillaPagos\\SQLProc\\gmi_sp_verExisteCuentaBancaria.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-12T18:26:01.751Z"
             }
           ]
         },

@@ -72,6 +72,10 @@ Public Class classProcesarPlanilla
     Private Sub sub_procesarPlanilla()
         Try
 
+
+
+
+
             ' Se declara una variable para el resultado de las operaciones
             Dim li_resultado As Integer = 0
 
@@ -388,9 +392,17 @@ Public Class classProcesarPlanilla
 
     Private Function int_procesarUnoAUno(ByVal po_planillaDet As entPlanilla_Lineas, ByVal po_SBOCompany As SAPbobsCOM.Company, ByVal po_planilla As entPlanilla) As Integer
         Try
+
             'tc financiero
             Dim Tcfinanciero As Decimal
-            Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(Date.Today)
+            Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(po_planillaDet.FechaPago)
+            'Tcfinanciero = dbl_obtenercuentaGananciaDiferenciaTC()
+
+            Dim TcPagoSAP As Decimal
+            TcPagoSAP = dbl_obtTipoCambio("USD", CDate(po_planillaDet.FechaPago).ToString("yyyyMMdd"))
+
+
+
 
             ' Se declara un objeto de tipo Payment del SDK de SAP Business One
             Dim lo_payment As SAPbobsCOM.Payments
@@ -459,20 +471,20 @@ Public Class classProcesarPlanilla
             lo_payment.UserFields.Fields.Item("U_GMI_RENDICION").Value = po_planillaDet.Nro_Operacion
             lo_payment.UserFields.Fields.Item("U_VS_NRO_POS").Value = po_planillaDet.NumPosicion
 
+
+
+
             ' Se verifica el tipo de planilla para asignar el tipo de cambio
             If lo_payment.DocCurrency <> str_obtMonLocal() Then
                 'lo_payment.DocRate = po_planillaDet.Tipo_Cambio
                 lo_payment.DocRate = Tcfinanciero
             End If
 
+
+
             ' Se asigna las propiedades al objeto de detalle
             lo_payment.Invoices.InvoiceType = po_planillaDet.Tipo_Doc
             lo_payment.Invoices.DocEntry = po_planillaDet.Id_Doc
-
-            '
-            'lo_payment.Invoices.LineMemo = "2123"
-            'lo_payment.CounterReference
-
 
             ' Se verifica el tipo de transaccion para asignar el ID de la linea
             If lo_payment.Invoices.InvoiceType = BoRcptInvTypes.it_JournalEntry Then ' Si el documento a pagar es un asiento, se debe especificar en que linea del asiento se encuentra el saldo
@@ -510,10 +522,15 @@ Public Class classProcesarPlanilla
 
 
 
-            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1012.xml")
+            'lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1012.xml")
+
+            Dim cuentaGanancia As String
+            cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
 
             ' Se realiza la inserción del objeto en la base de datos
             li_resultado = lo_payment.Add
+
+
 
             ' Se verifica el resultado
             If li_resultado <> 0 Then
@@ -527,20 +544,32 @@ Public Class classProcesarPlanilla
             Else ' Si el proceso de adicion a SAP se ejecutó de manera correcta
 
                 ' Se obtiene el docEntry del objeto recien creado
+
+                'Dim cuentaGanancia As String
+                'cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
+
                 Dim ls_docEntry As String = po_SBOCompany.GetNewObjectKey
+
+                'Dim cuentaGanancia As String
+                'cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
 
                 ' Se obtiene el objeto de configuracion
                 Dim lo_entConf As New entConfig
                 lo_entConf = lo_entConf.cfg_obtConfiguracionApp
 
                 ' Se verifica si la configuracion de la aplicacion indica que se debe crear los asientos de diferencia de cambio
-                If lo_entConf.CreaAsTC.ToLower = "y" Then
+                'If lo_entConf.CreaAsTC.ToLower = "y" Then
+                If True Then
 
                     ' Se verifica si el registro tiene el check de Diferencia de Tipo de Cambio
-                    If po_planillaDet.DifTC.ToLower = "y" Then
+                    'If po_planillaDet.DifTC.ToLower = "y" Then
+                    If True Then
+
+                        'Dim cuentaGanancia As String
+                        'cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
 
                         ' Se realiza la creación del asiento de diferencia de tipo de cambio
-                        li_resultado = int_crearAsientoTC(po_planillaDet, po_SBOCompany, po_planilla, ls_docEntry)
+                        li_resultado = int_ajustecrearAsientoTC(po_planillaDet, po_SBOCompany, po_planilla, ls_docEntry, Tcfinanciero, TcPagoSAP)
 
                     End If
 
@@ -604,6 +633,10 @@ Public Class classProcesarPlanilla
 
     Private Function int_procesarMuchosAUno(ByVal po_lstPlanillaDet As List(Of entPlanilla_Lineas), ByVal po_SBOCompany As SAPbobsCOM.Company, ByVal po_planilla As entPlanilla) As Integer
         Try
+
+            'asd
+            Dim Tcfinanciero As Decimal
+            Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(Date.Today)
 
             ' Se declara una variable para el resultado de la operacion del objeto de SAP
             Dim li_resultado As Integer = 0
@@ -690,7 +723,11 @@ Public Class classProcesarPlanilla
                     lo_payment.UserFields.Fields.Item("U_VS_NRO_POS").Value = lo_planillaDet.NumPosicion
                     ' Se verifica el tipo de planilla para asignar el tipo de cambio
                     If lo_payment.DocCurrency <> str_obtMonLocal() Then
-                        lo_payment.DocRate = lo_planillaDet.Tipo_Cambio
+                        'Tcfinanciero
+
+                        'lo_payment.DocRate = lo_planillaDet.Tipo_Cambio
+                        lo_payment.DocRate = Tcfinanciero
+
                         'If po_planilla.TipoPla = "D" Then
                         '    lo_payment.DocRate = lo_planillaDet.TipoCambioDoc
                         'Else
@@ -1206,8 +1243,10 @@ Public Class classProcesarPlanilla
 
             ' Se asigna las propiedades al objeto de asiento contable
             lo_jrnlEntry.ReferenceDate = po_planillaDet.FechaPago
-            lo_jrnlEntry.TransactionCode = "AS"
-            lo_jrnlEntry.Reference = po_planilla.id
+            lo_jrnlEntry.TaxDate = po_planillaDet.FechaPago
+            lo_jrnlEntry.DueDate = po_planillaDet.FechaPago
+            lo_jrnlEntry.TransactionCode = "AD"
+            lo_jrnlEntry.Reference = "Planilla " + po_planilla.id.ToString()
             lo_jrnlEntry.Reference2 = po_planillaDet.idEC
             lo_jrnlEntry.Reference3 = ps_docEntryPago
 
@@ -1227,17 +1266,40 @@ Public Class classProcesarPlanilla
 
                 Else
 
-                    ' Se asigna la moneda al detalle del asiento
-                    lo_jrnlEntry.Lines.FCCurrency = po_planillaDet.MonedaPag
+                    '' Se asigna la moneda al detalle del asiento
+                    'lo_jrnlEntry.Lines.FCCurrency = po_planillaDet.MonedaPag
 
                     ' Se verifica si el importe aplicado es menor al saldo del documento
                     If po_planillaDet.MonedaDoc = str_obtMonLocal() Then
 
-
-
                     Else
 
+                        ' Agregar líneas de asiento _SYS00000000089
+                        'lo_jrnlEntry.Lines.AccountCode = po_planillaDet.Cuenta '; // Código de cuenta
+                        lo_jrnlEntry.Lines.ShortName = po_planillaDet.Cuenta '; // Código de cuenta
+                        'lo_jrnlEntry.Lines.AccountCode = "_SYS00000000089" '; // Código de cuenta
+                        lo_jrnlEntry.Lines.Debit = 46.01 '; // Monto del débito
+                        lo_jrnlEntry.Lines.Credit = 0.0 '; // Monto del crédito
+                        lo_jrnlEntry.Lines.Add()
 
+                        'lo_jrnlEntry.Lines.AccountCode = "776001-00"   ' // Código de cuenta 
+                        lo_jrnlEntry.Lines.AccountCode = str_cuentaGananciaDiferenciaTC("GANANCIA DIFERENCIA")   ' // Código de cuenta
+                        lo_jrnlEntry.Lines.Debit = 0.0 '// Monto del débito
+                        lo_jrnlEntry.Lines.Credit = 46.01 '// Monto del crédito
+                        lo_jrnlEntry.Lines.Add()
+
+                        li_resultado = lo_jrnlEntry.Add()
+
+                        If li_resultado <> 0 Then
+
+                            Dim rpta As Integer = 0
+                            Dim msj As String = ""
+                            po_SBOCompany.GetLastError(li_resultado, msj)
+
+                        Else
+                            Dim asiento As String = po_SBOCompany.GetNewObjectKey()
+
+                        End If
 
                     End If
 
@@ -1252,6 +1314,111 @@ Public Class classProcesarPlanilla
     End Function
 
 #End Region
+
+
+#Region "AjusAsientoTC"
+
+    Private Function int_ajustecrearAsientoTC(ByVal po_planillaDet As entPlanilla_Lineas,
+                                        ByVal po_SBOCompany As SAPbobsCOM.Company,
+                                        ByVal po_planilla As entPlanilla,
+                                        ps_docEntryPago As String,
+                                        tcFinanciero As Decimal,
+                                        tcFechaPago As Decimal
+                                        ) As Integer
+        Try
+
+            ' Se declara una variable para el resultado de la operacion
+            Dim li_resultado As Integer = 0
+
+            ' Se obtiene el objeto de configuracion
+            Dim lo_entConf As New entConfig
+            lo_entConf = lo_entConf.cfg_obtConfiguracionApp
+
+            ' Se declara un objeto de tipo asiento contable de sap business one
+            Dim lo_jrnlEntry As SAPbobsCOM.JournalEntries
+
+            ' Se inicializa el objeto de asiento contable de sap business one
+            lo_jrnlEntry = po_SBOCompany.GetBusinessObject(BoObjectTypes.oJournalEntries)
+
+            ' Se asigna las propiedades al objeto de asiento contable
+            lo_jrnlEntry.ReferenceDate = po_planillaDet.FechaPago
+            lo_jrnlEntry.TaxDate = po_planillaDet.FechaPago
+            lo_jrnlEntry.DueDate = po_planillaDet.FechaPago
+            lo_jrnlEntry.TransactionCode = "AD"
+            lo_jrnlEntry.Reference = "Planilla " + po_planilla.id.ToString()
+            lo_jrnlEntry.Reference2 = po_planillaDet.idEC
+            lo_jrnlEntry.Reference3 = ps_docEntryPago
+
+            ' Se asigna las propiedades al detalle del asiento
+            ' - Se verifica la moneda del depósito
+            If po_planillaDet.MonedaPag = str_obtMonLocal() Then
+
+
+                ' Se verifica si el Saldo a Favor es mayor a cero
+                If po_planillaDet.SaldoFavor > 0.0 Then
+
+                End If
+
+                ' Se verifica si el importe aplicado es menor al saldo del documento
+                If po_planillaDet.MonedaDoc = str_obtMonLocal() Then
+
+
+                Else
+
+                    '' Se asigna la moneda al detalle del asiento
+                    'lo_jrnlEntry.Lines.FCCurrency = po_planillaDet.MonedaPag
+
+                    ' Se verifica si el importe aplicado es menor al saldo del documento
+                    If po_planillaDet.MonedaDoc = str_obtMonLocal() Then
+
+                    Else
+                        'dbl_obtenercuentaGananciaDiferenciaTC
+                        ' Agregar líneas de asiento _SYS00000000089
+                        'lo_jrnlEntry.Lines.AccountCode = po_planillaDet.Cuenta '; // Código de cuenta
+                        lo_jrnlEntry.Lines.ShortName = po_planillaDet.Cuenta '; // Código de cuenta
+                        'lo_jrnlEntry.Lines.AccountCode = "_SYS00000000089" '; // Código de cuenta
+                        lo_jrnlEntry.Lines.Debit = (tcFinanciero - tcFechaPago) * po_planillaDet.Saldo '46.01 '; // Monto del débito
+                        lo_jrnlEntry.Lines.Credit = 0.0 '; // Monto del crédito
+                        lo_jrnlEntry.Lines.Add()
+
+                        'lo_jrnlEntry.Lines.AccountCode = "776001-00"   ' // Código de cuenta 
+                        'lo_jrnlEntry.Lines.AccountCode = str_cuentaGananciaDiferenciaTC()   ' // Código de cuenta
+                        'lo_jrnlEntry.Lines.AccountCode = entComun.str_obtenercuentaGananciaDiferenciaTCv2()   ' // Código de cuenta
+                        lo_jrnlEntry.Lines.AccountCode = strobtenercuentaGananciaDiferenciaTCv2()
+
+
+                        lo_jrnlEntry.Lines.Debit = 0.0 '// Monto del débito
+                        lo_jrnlEntry.Lines.Credit = (tcFinanciero - tcFechaPago) * po_planillaDet.Saldo '// Monto del crédito
+                        lo_jrnlEntry.Lines.Add()
+
+                        li_resultado = lo_jrnlEntry.Add()
+
+                        If li_resultado <> 0 Then
+
+                            Dim rpta As Integer = 0
+                            Dim msj As String = ""
+                            po_SBOCompany.GetLastError(li_resultado, msj)
+
+                        Else
+                            Dim asiento As String = po_SBOCompany.GetNewObjectKey()
+
+                        End If
+
+                    End If
+
+                End If
+
+            End If
+
+        Catch ex As Exception
+            sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
+            Return -1
+        End Try
+    End Function
+
+#End Region
+
+
 
 #Region "Busqueda"
 
