@@ -365,7 +365,7 @@ Public Module ModuleSQLComun
             ' Crear la conexión a la base de datos
             Using cn As New SqlConnection(connectionString)
                 ' Crear el comando para ejecutar el Stored Procedure
-                Using cmd As New SqlCommand("gmi_sp_cuentaPerdidaDiferenciaTC", cn)
+                Using cmd As New SqlCommand("gmi_sp_cuentaGananciaDiferenciaTC", cn)
                     cmd.CommandType = CommandType.StoredProcedure ' Indicar que es un Stored Procedure
 
                     '' Agregar el parámetro de tipo String

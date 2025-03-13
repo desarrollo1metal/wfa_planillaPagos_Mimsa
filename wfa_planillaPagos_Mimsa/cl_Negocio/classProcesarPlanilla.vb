@@ -75,7 +75,6 @@ Public Class classProcesarPlanilla
 
 
 
-
             ' Se declara una variable para el resultado de las operaciones
             Dim li_resultado As Integer = 0
 
@@ -393,6 +392,16 @@ Public Class classProcesarPlanilla
     Private Function int_procesarUnoAUno(ByVal po_planillaDet As entPlanilla_Lineas, ByVal po_SBOCompany As SAPbobsCOM.Company, ByVal po_planilla As entPlanilla) As Integer
         Try
 
+
+            'cuenta de ganancia
+            Dim cuentaGanancia As String
+            cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
+
+            'cuenta de ganancia
+            Dim cuentaPerdida As String
+            cuentaPerdida = str_cuentaPerdidaDiferenciaTC()
+
+
             'tc financiero
             Dim Tcfinanciero As Decimal
             Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(po_planillaDet.FechaPago)
@@ -520,12 +529,9 @@ Public Class classProcesarPlanilla
 
             'cuando la factura es en dolares y el pago recibo o cobranza en Soles, se debe tomar    
 
+            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_0819.xml")
 
 
-            'lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1012.xml")
-
-            Dim cuentaGanancia As String
-            cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
 
             ' Se realiza la inserción del objeto en la base de datos
             li_resultado = lo_payment.Add
@@ -545,13 +551,8 @@ Public Class classProcesarPlanilla
 
                 ' Se obtiene el docEntry del objeto recien creado
 
-                'Dim cuentaGanancia As String
-                'cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
 
                 Dim ls_docEntry As String = po_SBOCompany.GetNewObjectKey
-
-                'Dim cuentaGanancia As String
-                'cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
 
                 ' Se obtiene el objeto de configuracion
                 Dim lo_entConf As New entConfig
@@ -559,17 +560,17 @@ Public Class classProcesarPlanilla
 
                 ' Se verifica si la configuracion de la aplicacion indica que se debe crear los asientos de diferencia de cambio
                 'If lo_entConf.CreaAsTC.ToLower = "y" Then
-                If True Then
+                If Tcfinanciero > TcPagoSAP Then
 
+                    'cuando el tc financiero es positivo se debe realizar un ajuste, si es igual no debe haber ajuste, y cuando es negativo ajuste tambien
                     ' Se verifica si el registro tiene el check de Diferencia de Tipo de Cambio
                     'If po_planillaDet.DifTC.ToLower = "y" Then
-                    If True Then
+                    If po_planillaDet.MonedaDoc = "USD" And po_planillaDet.MonedaPag = "SOL" Then
 
-                        'Dim cuentaGanancia As String
-                        'cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
+
 
                         ' Se realiza la creación del asiento de diferencia de tipo de cambio
-                        li_resultado = int_ajustecrearAsientoTC(po_planillaDet, po_SBOCompany, po_planilla, ls_docEntry, Tcfinanciero, TcPagoSAP)
+                        li_resultado = int_ajustecrearAsientoTC(po_planillaDet, po_SBOCompany, po_planilla, ls_docEntry, Tcfinanciero, TcPagoSAP, cuentaGanancia)
 
                     End If
 
@@ -634,9 +635,12 @@ Public Class classProcesarPlanilla
     Private Function int_procesarMuchosAUno(ByVal po_lstPlanillaDet As List(Of entPlanilla_Lineas), ByVal po_SBOCompany As SAPbobsCOM.Company, ByVal po_planilla As entPlanilla) As Integer
         Try
 
-            'asd
-            Dim Tcfinanciero As Decimal
-            Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(Date.Today)
+
+
+
+            ''asd
+            'Dim Tcfinanciero As Decimal
+            'Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(Date.Today)
 
             ' Se declara una variable para el resultado de la operacion del objeto de SAP
             Dim li_resultado As Integer = 0
@@ -661,6 +665,30 @@ Public Class classProcesarPlanilla
 
             ' Se recorre las lineas de detalle de la lista
             For Each lo_planillaDet As entPlanilla_Lineas In po_lstPlanillaDet
+
+
+                'jsolis
+                'ini_nuevo
+
+                'cuenta de ganancia
+                Dim cuentaGanancia As String
+                cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
+
+                'cuenta de ganancia
+                Dim cuentaPerdida As String
+                cuentaPerdida = str_cuentaPerdidaDiferenciaTC()
+
+
+                'tc financiero
+                Dim Tcfinanciero As Decimal
+                Tcfinanciero = decimal_str_verEstadoTipoCambioFinanciero(lo_planillaDet.FechaPago)
+                'Tcfinanciero = dbl_obtenercuentaGananciaDiferenciaTC()
+
+                Dim TcPagoSAP As Decimal
+                TcPagoSAP = dbl_obtTipoCambio("USD", CDate(lo_planillaDet.FechaPago).ToString("yyyyMMdd"))
+
+                'fin_nuevo
+
 
                 ' Se asigna el codigo del cliente a la variable y las propiedades de la cabecera del pago
                 If ls_codigoCli = "" Then ' La primera linea del recorrido
@@ -826,6 +854,8 @@ Public Class classProcesarPlanilla
 
     Private Function int_procesarMuchosAMuchos(ByVal po_lstPlanillaDet As List(Of entPlanilla_Lineas), ByVal po_SBOCompany As SAPbobsCOM.Company, ByVal po_planilla As entPlanilla, ByVal pi_tipoAsg As Integer) As Integer
         Try
+
+
 
             ' Se declara una variable para el resultado de la operacion del objeto de SAP
             Dim li_resultado As Integer = 0
@@ -1323,7 +1353,8 @@ Public Class classProcesarPlanilla
                                         ByVal po_planilla As entPlanilla,
                                         ps_docEntryPago As String,
                                         tcFinanciero As Decimal,
-                                        tcFechaPago As Decimal
+                                        tcFechaPago As Decimal,
+                                        cuentaGanacia As String
                                         ) As Integer
         Try
 
@@ -1384,9 +1415,7 @@ Public Class classProcesarPlanilla
                         'lo_jrnlEntry.Lines.AccountCode = "776001-00"   ' // Código de cuenta 
                         'lo_jrnlEntry.Lines.AccountCode = str_cuentaGananciaDiferenciaTC()   ' // Código de cuenta
                         'lo_jrnlEntry.Lines.AccountCode = entComun.str_obtenercuentaGananciaDiferenciaTCv2()   ' // Código de cuenta
-                        lo_jrnlEntry.Lines.AccountCode = strobtenercuentaGananciaDiferenciaTCv2()
-
-
+                        lo_jrnlEntry.Lines.AccountCode = cuentaGanacia
                         lo_jrnlEntry.Lines.Debit = 0.0 '// Monto del débito
                         lo_jrnlEntry.Lines.Credit = (tcFinanciero - tcFechaPago) * po_planillaDet.Saldo '// Monto del crédito
                         lo_jrnlEntry.Lines.Add()
