@@ -1036,7 +1036,7 @@ Public Class ClassGenPlanilla
                 lo_row("MontoOp") = lo_rowEC("Monto")
                 'lo_row("Tipo_Cambio") = dbl_obtTipoCambio("USD", CDate(lo_rowEC("Fecha")).ToString("yyyyMMdd"))
                 lo_row("Tipo_Cambio") = dbl_obtTipoCambio("USD", CDate(lo_rowCD("FechaDoc")).ToString("yyyyMMdd"))
-                lo_row("Cuenta") = lo_rowEC("Cta_Contable")
+                lo_row("Cuenta1") = lo_rowEC("Cta_Contable")
                 Dim FechaDocumento As DevExpress.XtraEditors.DateEdit = ctr_obtenerControl("FechaDocumento", o_form.Controls)
                 lo_row("FechaPago") = If(FechaDocumento.EditValue = Nothing, lo_rowEC("Fecha"), FechaDocumento.EditValue)
                 lo_row("FechaDeposito") = po_dtbEC.Rows(0)("Fecha")
@@ -2573,7 +2573,7 @@ Public Class ClassGenPlanilla
             col = New DataColumn("Desc", GetType(System.String)) : dtbExport.Columns.Add(col)
             col = New DataColumn("Monto", GetType(System.String)) : dtbExport.Columns.Add(col)
             col = New DataColumn("Operacion", GetType(System.String)) : dtbExport.Columns.Add(col)
-            col = New DataColumn("Cuenta", GetType(System.String)) : dtbExport.Columns.Add(col)
+            col = New DataColumn("Cuenta2", GetType(System.String)) : dtbExport.Columns.Add(col)
             col = New DataColumn("Moneda", GetType(System.String)) : dtbExport.Columns.Add(col)
             col = New DataColumn("Banco", GetType(System.String)) : dtbExport.Columns.Add(col)
             col = New DataColumn("Contable", GetType(System.String)) : dtbExport.Columns.Add(col)
@@ -2585,7 +2585,7 @@ Public Class ClassGenPlanilla
                 dr("Fecha") = idtbDatos.Rows(i)("Fecha").ToString
                 dr("Desc") = idtbDatos.Rows(i)("Descripcion").ToString
                 dr("Operacion") = idtbDatos.Rows(i)("Operacion").ToString
-                dr("Cuenta") = idtbDatos.Rows(i)("Cuenta").ToString
+                dr("Cuenta3") = idtbDatos.Rows(i)("Cuenta").ToString
                 dr("Moneda") = strTipMon & idtbDatos.Rows(i)("Moneda").ToString
                 If (idtbDatos.Rows(i)("Moneda").ToString.Equals("SOL")) Then
                     strTipMon = "S/. "

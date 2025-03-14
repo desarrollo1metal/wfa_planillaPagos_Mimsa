@@ -3,4 +3,6 @@ mega - Mega
 sf - Steel
 mim - Mimsa
 rum - Rumi
-tes - Mimsa_test
+tes - Test_induzinc
+te1 - Test_RumiImport
+te2 - Test_MIMSA
