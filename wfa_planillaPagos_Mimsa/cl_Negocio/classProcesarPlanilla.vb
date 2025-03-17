@@ -419,6 +419,13 @@ Public Class classProcesarPlanilla
                                          ) As Integer
         Try
 
+            'pago recibido
+            Dim ls_docEntry As String
+            ls_docEntry = String.Empty
+
+            Dim li_resultado As Integer = 0
+            Dim ls_mensaje As String = ""
+
 
             Dim TcPagoSAP As Decimal
             TcPagoSAP = dbl_obtTipoCambio("USD", CDate(po_planillaDet.FechaPago).ToString("yyyyMMdd"))
@@ -456,8 +463,7 @@ Public Class classProcesarPlanilla
             lo_payment.DocType = SAPbobsCOM.BoRcptTypes.rCustomer
 
             ' Se declara una variable para el resultado de la operacion del objeto de SAP
-            Dim li_resultado As Integer = 0
-            Dim ls_mensaje As String = ""
+
 
             ' Se verifica si la fecha del documento a pagar es mayor a la fecha del pago
             If po_planillaDet.FechaDoc.CompareTo(po_planillaDet.FechaPago) > 0 Then
@@ -537,7 +543,8 @@ Public Class classProcesarPlanilla
             If po_planillaDet.MonedaDoc = entComun.str_obtMonLocal Then
                 lo_payment.Invoices.SumApplied = po_planillaDet.Imp_Aplicado
             Else
-                lo_payment.Invoices.AppliedFC = po_planillaDet.Imp_AplicadoME
+                'lo_payment.Invoices.AppliedFC = po_planillaDet.Imp_AplicadoME
+                lo_payment.Invoices.AppliedFC = po_planillaDet.Saldo
 
 
             End If
@@ -562,7 +569,7 @@ Public Class classProcesarPlanilla
 
             'cuando la factura es en dolares y el pago recibo o cobranza en Soles, se debe tomar    
 
-            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_0819.xml")
+            lo_payment.SaveXML("C:\Users\programador_2\Documents\SaveXML_PR\pr_1624.xml")
 
 
 
@@ -585,7 +592,7 @@ Public Class classProcesarPlanilla
                 ' Se obtiene el docEntry del objeto recien creado
 
 
-                Dim ls_docEntry As String = po_SBOCompany.GetNewObjectKey
+                ls_docEntry = po_SBOCompany.GetNewObjectKey
 
                 ' Se obtiene el objeto de configuracion
                 Dim lo_entConf As New entConfig
@@ -644,6 +651,50 @@ Public Class classProcesarPlanilla
                 End If
 
             End If
+
+
+
+
+            '''INI crear la reconciliacion
+
+            ''' Obtener el servicio de reconciliación interna
+            ''Dim companyService As CompanyService = po_SBOCompany.GetCompanyService()
+            ''Dim service As InternalReconciliationsService = companyService.GetBusinessService(ServiceTypes.InternalReconciliationsService)
+
+            ''' Crear transacciones abiertas para reconciliación
+            ''Dim openTrans As InternalReconciliationOpenTrans = service.GetDataInterface(InternalReconciliationsServiceDataInterfaces.irsInternalReconciliationOpenTrans)
+            ''Dim reconParams As InternalReconciliationParams = service.GetDataInterface(InternalReconciliationsServiceDataInterfaces.irsInternalReconciliationParams)
+
+            ''' Especificar que la reconciliación es para un socio de negocio (cliente o proveedor)
+            ''openTrans.CardOrAccount = CardOrAccountEnum.coaCard
+
+            '''asientos
+            ''' Agregar primera línea de transacción
+            ''openTrans.InternalReconciliationOpenTransRows.Add()
+            ''openTrans.InternalReconciliationOpenTransRows.Item(0).Selected = BoYesNoEnum.tYES
+            ''openTrans.InternalReconciliationOpenTransRows.Item(0).TransId = li_resultado ' ID del documento
+            ''openTrans.InternalReconciliationOpenTransRows.Item(0).TransRowId = 1 ' Línea del documento
+            ''openTrans.InternalReconciliationOpenTransRows.Item(0).ReconcileAmount = 348.5 ' Monto a reconciliar
+
+            '''pagos recibido
+            ''' Agregar segunda línea de transacción1
+            ''openTrans.InternalReconciliationOpenTransRows.Add()
+            ''openTrans.InternalReconciliationOpenTransRows.Item(1).Selected = BoYesNoEnum.tYES
+            ''openTrans.InternalReconciliationOpenTransRows.Item(1).TransId = Convert.ToInt32(ls_docEntry) ' ID del otro documento
+            ''openTrans.InternalReconciliationOpenTransRows.Item(1).TransRowId = 1
+            ''openTrans.InternalReconciliationOpenTransRows.Item(1).ReconcileAmount = 348.5
+
+            ''' Ejecutar la reconciliación
+            ''Try
+            ''    reconParams = service.Add(openTrans)
+            ''    Console.WriteLine("Reconciliación interna creada con éxito.")
+            ''Catch ex As Exception
+            ''    Console.WriteLine("Error: " & ex.Message)
+            ''End Try
+
+
+            '''FIN de reconcoliacion
+
 
             ' Se retorna el resultado
             Return li_resultado
@@ -1324,6 +1375,54 @@ Public Class classProcesarPlanilla
             ' Se obtiene el progressBar asociado al proceso
             Dim lo_progressBar As System.Windows.Forms.ProgressBar = ctr_obtenerControl("progresoPlanilla", o_form.Controls)
 
+
+
+
+            ' MOMEMNTANEO
+            '''INI crear la reconciliacion
+
+            ''' Obtener el servicio de reconciliación interna
+            Dim companyService As CompanyService = lo_SBOCompany.GetCompanyService()
+            Dim service As InternalReconciliationsService = companyService.GetBusinessService(ServiceTypes.InternalReconciliationsService)
+
+            ' Crear transacciones abiertas para reconciliación
+            Dim openTrans As InternalReconciliationOpenTrans = service.GetDataInterface(InternalReconciliationsServiceDataInterfaces.irsInternalReconciliationOpenTrans)
+            Dim reconParams As InternalReconciliationParams = service.GetDataInterface(InternalReconciliationsServiceDataInterfaces.irsInternalReconciliationParams)
+
+            ' Especificar que la reconciliación es para un socio de negocio (cliente o proveedor)
+            openTrans.CardOrAccount = CardOrAccountEnum.coaCard
+
+            'PAGOS RECIBIDO
+            ' Agregar primera línea de transacción
+            openTrans.InternalReconciliationOpenTransRows.Add()
+            openTrans.InternalReconciliationOpenTransRows.Item(0).Selected = BoYesNoEnum.tYES
+            'openTrans.InternalReconciliationOpenTransRows.Item(0).TransId = li_resultado ' ID del documento
+            openTrans.InternalReconciliationOpenTransRows.Item(0).TransId = 1369975 ' ID del documento
+            openTrans.InternalReconciliationOpenTransRows.Item(0).TransRowId = 1 ' Línea del documento
+            openTrans.InternalReconciliationOpenTransRows.Item(0).ReconcileAmount = -8.0 ' Monto a reconciliar
+
+            'ASIENTO
+            ' Agregar segunda línea de transacción1
+            openTrans.InternalReconciliationOpenTransRows.Add()
+            openTrans.InternalReconciliationOpenTransRows.Item(1).Selected = BoYesNoEnum.tYES
+            openTrans.InternalReconciliationOpenTransRows.Item(1).TransId = Convert.ToInt32(1369976) ' ID del otro documento
+            openTrans.InternalReconciliationOpenTransRows.Item(1).TransRowId = 0
+            openTrans.InternalReconciliationOpenTransRows.Item(1).ReconcileAmount = 8
+
+            ' Ejecutar la reconciliación
+            Try
+                reconParams = service.Add(openTrans)
+                Console.WriteLine("Reconciliación interna creada con éxito.")
+            Catch ex As Exception
+                Console.WriteLine("Error: " & ex.Message)
+            End Try
+
+
+
+
+
+
+
             ' Se verifica si se obtuvo el progressBar
             If Not lo_progressBar Is Nothing Then
                 lo_progressBar.Maximum = po_planilla.PagosR.int_contar
@@ -1422,6 +1521,7 @@ Public Class classProcesarPlanilla
             '    Console.WriteLine("Asiento no encontrado.")
             'End If
             ''FIN
+
             '''jsolis
 
 
@@ -1668,6 +1768,9 @@ Public Class classProcesarPlanilla
                                         ) As Integer
         Try
 
+
+            Dim asiento As Integer
+
             ' Se declara una variable para el resultado de la operacion
             Dim li_resultado As Integer = 0
 
@@ -1687,8 +1790,9 @@ Public Class classProcesarPlanilla
             lo_jrnlEntry.DueDate = po_planillaDet.FechaPago
             lo_jrnlEntry.TransactionCode = "AD"
 
-            lo_jrnlEntry.Reference = "1537 Planilla " + po_planilla.id.ToString()
-            lo_jrnlEntry.Memo = "1536 JS Planilla cobranza " + po_planilla.id.ToString()
+            'JOLIS
+            lo_jrnlEntry.Reference = "1007 Planilla " + po_planilla.id.ToString()
+            lo_jrnlEntry.Memo = "1007 JS Planilla cobranza " + po_planilla.id.ToString()
 
             lo_jrnlEntry.Reference2 = po_planillaDet.idEC
             lo_jrnlEntry.Reference3 = ps_docEntryPago
@@ -1747,7 +1851,7 @@ Public Class classProcesarPlanilla
 
                             Else
                                 'va servir para para la reconciliación
-                                Dim asiento As String = po_SBOCompany.GetNewObjectKey()
+                                asiento = po_SBOCompany.GetNewObjectKey()
 
                             End If
 
@@ -1784,7 +1888,7 @@ Public Class classProcesarPlanilla
 
                             Else
                                 'va servir para para la reconciliación
-                                Dim asiento As String = po_SBOCompany.GetNewObjectKey()
+                                asiento = po_SBOCompany.GetNewObjectKey()
 
                             End If
 
@@ -1796,6 +1900,10 @@ Public Class classProcesarPlanilla
                 End If
 
             End If
+
+            'Return asiento
+
+
 
         Catch ex As Exception
             sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
