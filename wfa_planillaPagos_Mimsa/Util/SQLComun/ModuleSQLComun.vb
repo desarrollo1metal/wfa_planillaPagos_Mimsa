@@ -655,6 +655,23 @@ Public Module ModuleSQLComun
         End Try
     End Function
 
+
+
+    Public Function str_verTransId_PagoRecibido(DocentryT As Integer) As Integer
+        Try
+
+            ' Se declara una variable para la consulta SQL
+            Dim ls_sql As String = "exec gmi_sp_verTransId_PagoRecibido '" & Convert.ToString(DocentryT) & "'"
+
+            ' Se ejecuta la consulta
+            Return ModuleSQLComun.dtb_ejecutarSQL_NET(ls_sql)(0)(0)
+
+        Catch ex As Exception
+            sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, "ModuleSQLComun", System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
+            Return ""
+        End Try
+    End Function
+
     Public Function decimal_str_verEstadoTipoCambioFinanciero(pd_fecha As Date) As Decimal
         Try
 

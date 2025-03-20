@@ -245,7 +245,8 @@ Partial Class frmProcesarPlanilla
         Me.btnCancelPla.Size = New System.Drawing.Size(227, 31)
         Me.btnCancelPla.TabIndex = 72
         Me.btnCancelPla.Tag = "sub_cancelarPlanilla"
-        Me.btnCancelPla.Text = "Cancelar Planilla"
+        'JSOLIS solo para la presentación
+        Me.btnCancelPla.Text = "Conciliar Planilla"
         Me.btnCancelPla.UseVisualStyleBackColor = True
         '
         'Label7

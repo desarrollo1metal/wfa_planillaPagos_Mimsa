@@ -15,8 +15,56 @@ Public Class entPlanilla_PagosR
     Private i_DocNumSAP As Integer
     <annAtributo(True, False, "DocEntrySAP", "DocEntry SAP", False)>
     Private i_DocEntrySAP As Integer
+
     <annAtributo(True, False, "TransIdSAP", "TransId SAP", False)>
     Private i_TransIdSAP As Integer
+
+    'nuevo
+    <annAtributo(True, False, "LineaTran", "LineaTran", False)>
+    Private i_LineaTran As Integer
+
+    <annAtributo(True, False, "DocEntryTr", "DocEntryTr", False)>
+    Private i_DocEntryTr As Integer
+
+    <annAtributo(True, False, "MontoReconciliacion", "Monto Reconciliacion", False)>
+    Private i_MontoReconciliacion As Double
+
+
+
+
+    Public Property MontoReconciliacion() As Double
+        Get
+            Return i_MontoReconciliacion
+        End Get
+        Set(ByVal value As Double)
+            i_MontoReconciliacion = value
+        End Set
+    End Property
+
+    '<annAtributo(True, False, "DocEntryTr", "DocEntryTr SAP Asiento", False)>
+    'Private i_DocEntryTr As Integer
+
+    'TipoTran	LineaTran	DocEntryTr
+
+    Public Property DocEntryTr() As Integer
+        Get
+            Return i_DocEntryTr
+        End Get
+        Set(ByVal value As Integer)
+            i_DocEntryTr = value
+        End Set
+    End Property
+
+
+    Public Property LineaTran() As Integer
+        Get
+            Return i_LineaTran
+        End Get
+        Set(ByVal value As Integer)
+            i_LineaTran = value
+        End Set
+    End Property
+
 
     ' Propiedades   
     Public Property id() As Integer
