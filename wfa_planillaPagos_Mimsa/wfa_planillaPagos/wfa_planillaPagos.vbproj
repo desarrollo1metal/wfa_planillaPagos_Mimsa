@@ -386,6 +386,9 @@
     <Content Include="SQLProc\gmi_sp_obtenerPagosNroOper.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLProc\gmi_sp_obtenerTipoCambioPLL - Copia.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLProc\gmi_sp_obtenerTipoCambioPLL.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

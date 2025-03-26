@@ -912,7 +912,7 @@ C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_
 C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_AccesoDatos.Resources.resources
 C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_AccesoDatos.vbproj.GenerateResource.cache
 C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_AccesoDatos.vbproj.CoreCompileInputs.cache
-C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_Acces.9F352A92.Up2Date
+C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_AccesoDatos.vbproj.CopyComplete
 C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_AccesoDatos.dll
 C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_AccesoDatos.xml
 C:\TI_MIMSA\CF\wfaPlanillaPagos_Mimsa\wfa_planillaPagos_Mimsa\wfa_planillaPagos_Mimsa\cl_AccesoDatos\obj\Debug\cl_AccesoDatos.pdb

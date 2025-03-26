@@ -446,6 +446,64 @@ Public Module ModuleSQLComun
         End Try
     End Function
 
+
+
+    Public Function dbl_obtCuentaGanancia_pl() As String
+        Try
+
+            ' Se declara una variable para la cadena SQL
+            Dim ls_sql As String = "exec gmi_sp_cuentaGananciaDiferenciaTC "
+
+            ' Se ejecuta la consulta
+            Dim lo_dtb As DataTable = ModuleSQLComun.dtb_ejecutarSQL_NET(ls_sql)
+
+            ' Se verifica si se obtuvo algun resultado
+            If lo_dtb.Rows.Count > 0 Then
+
+                ' Se retorna el tipo de cambio para la fecha especificada
+                Return (lo_dtb.Rows(0).Item(0).ToString)
+
+            Else
+
+                ' Se retorna 0
+                Return ""
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(System.Reflection.Assembly.GetExecutingAssembly.GetName.Name & "." & System.Reflection.MethodInfo.GetCurrentMethod.Name & ": " & ex.Message)
+            Return ""
+        End Try
+    End Function
+
+    'Public Function dbl_obtenerTipoCambio(ByVal ps_moneda As String, ByVal ps_fecha As String) As Double
+    '    Try
+
+    '        ' Se declara una variable para la cadena SQL
+    '        Dim ls_sql As String = "execute gmi_sp_obtenerTipoCambioPLL '" & ps_moneda & "', '" & ps_fecha & "', '" & S_CompanyDB & "'"
+
+    '        ' Se ejecuta la consulta
+    '        Dim lo_dtb As DataTable = ModuleSQLComun.dtb_ejecutarSQL_NET(ls_sql)
+
+    '        ' Se verifica si se obtuvo algun resultado
+    '        If lo_dtb.Rows.Count > 0 Then
+
+    '            ' Se retorna el tipo de cambio para la fecha especificada
+    '            Return Double.Parse(lo_dtb.Rows(0).Item(0).ToString)
+
+    '        Else
+
+    '            ' Se retorna 0
+    '            Return 0.0
+
+    '        End If
+
+    '    Catch ex As Exception
+    '        MsgBox(System.Reflection.Assembly.GetExecutingAssembly.GetName.Name & "." & System.Reflection.MethodInfo.GetCurrentMethod.Name & ": " & ex.Message)
+    '        Return 0.0
+    '    End Try
+    'End Function
+
     Public Function dbl_obtenerTipoCambio(ByVal ps_moneda As String, ByVal ps_fecha As String) As Double
         Try
 
@@ -473,6 +531,7 @@ Public Module ModuleSQLComun
             Return 0.0
         End Try
     End Function
+
 
     Public Function str_obtenerParamSQLPorTipo(ByVal po_param As Object) As String
         Try

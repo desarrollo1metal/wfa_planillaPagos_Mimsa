@@ -195,12 +195,9 @@ Public Class classProcesarPlanilla
                         ''Dim cuentaGanancia As String
                         ''cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
 
-
                         '''cuenta de ganancia
                         ''Dim cuentaPerdida As String
                         ''cuentaPerdida = str_cuentaPerdidaDiferenciaTC()
-
-
 
                         '''tc financiero
                         ''Dim Tcfinanciero As Decimal
@@ -438,9 +435,10 @@ Public Class classProcesarPlanilla
             TcPagoSAP = dbl_obtTipoCambio("USD", CDate(po_planillaDet.FechaPago).ToString("yyyyMMdd"))
             'TcPagoSAP = TcPagoSAPt
 
+            'para la 2da vuelta, se cae aca.
             'cuenta de ganancia
             Dim cuentaGanancia As String
-            cuentaGanancia = strobtenercuentaGananciaDiferenciaTCv2()
+            cuentaGanancia = dbl_obtCuentaGanancia_pc() 'strobtenercuentaGananciaDiferenciaTCv2()
             'cuentaGanancia = cuentaGananciat
 
             'cuenta de ganancia
@@ -611,6 +609,7 @@ Public Class classProcesarPlanilla
                 ' Se verifica si la configuracion de la aplicacion indica que se debe crear los asientos de diferencia de cambio
 
                 'If lo_entConf.CreaAsTC.ToLower = "y" Then
+
                 ' diferencia de tipo de cambio a favor , ganancia
                 If Tcfinanciero > TcPagoSAP Then
 
@@ -628,6 +627,8 @@ Public Class classProcesarPlanilla
                     End If
 
                 End If
+
+
 
                 'Diferencia por TC , perdida
                 If TcPagoSAP > Tcfinanciero Then
@@ -660,7 +661,6 @@ Public Class classProcesarPlanilla
                     'agregado
                     'TransId Asiento 
                     po_planilla.PagosR.LineaTran = asiento_result
-
                     'DocEntry pagos efectutado PR
                     po_planilla.PagosR.DocEntryTr = ls_docEntry
                     po_planilla.PagosR.MontoReconciliacion = montoreconciliaciont
@@ -1285,18 +1285,6 @@ Public Class classProcesarPlanilla
 
             ls_estPeriodo = str_verTransId_PagoRecibido(docEntry_PR)
 
-            '' Se verifica si se obtuvo el estado del periodo
-            'If ls_estPeriodo.Trim = "" Then
-            '    sub_mostrarMensaje("No se pudo obtener el estado del periodo para la fecha " & pd_fechaContab.ToString("yyyyMMdd"), System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_sis)
-            '    Return pd_fechaContab
-            'End If
-
-            '' Se retorna la fecha de contabilización del Pago Recibido de acuerdo al estado del periodo de la fecha de contabilización recibida
-            'If ls_estPeriodo.ToLower.Trim = "y" Then
-            '    Return Now.Date
-            'Else
-            '    Return pd_fechaContab
-            'End If
             Return ls_estPeriodo
         Catch ex As Exception
             sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
@@ -1324,6 +1312,35 @@ Public Class classProcesarPlanilla
 
                 ' Se muestra un mensaje que indique que solo se puede cancelar una planilla Abierta o Cerrada
                 MsgBox("Solo se puede cancelar una planilla Abierta o Cerrada(Procesada).")
+
+            End If
+
+        Catch ex As Exception
+            sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
+        End Try
+    End Sub
+
+
+    Public Sub sub_Reconciliar()
+        Try
+
+            ' Se verifica el modo del formulario
+            If o_form.Modo = enm_modoForm.BUSCAR Then
+                MsgBox("Primero, debe realizar la busqueda de una planilla.")
+                Exit Sub
+            End If
+
+            ' Se verifica el estado de la planilla: solo se puede cancelar una planilla Abierta o una Cerrada
+            Dim ls_estado As String = str_obtEstadoObjeto()
+            If ls_estado = "O" Or ls_estado = "C" Then
+
+                ' Se realiza la cancelacion de la planilla
+                sub_reconciliarPlanilla(ls_estado)
+
+            Else
+
+                ' Se muestra un mensaje que indique que solo se puede cancelar una planilla Abierta o Cerrada
+                MsgBox("Solo se puede reconciliar una planilla Cerrada(Procesada).")
 
             End If
 
@@ -1390,31 +1407,31 @@ Public Class classProcesarPlanilla
                     Exit Sub
                 End If
 
-                ''''jsolis orignal, cancelar plantilla
-                '''' Se muestra un mensaje de confirmacion
-                ''li_confirm = MessageBox.Show("Al cancelar una planilla cerrada (procesada), se cancela todos los Pagos Recibidos creados en SAP Business One y el estado de la misma cambia a Abierto. ¿Esta seguro que desea cancelar la planilla?", "caption", MessageBoxButtons.YesNoCancel)
-
-                ''' Se verifica el resultado del mensaje de confirmacion
-                ''If Not li_confirm = DialogResult.Yes Then
-                ''    Exit Sub
-                ''End If
-
-                ''' Se realiza la cancelacion de cada uno de los pagos del detalle de Pagos Recibidos del objeto
-                ''Sub_cancelarPagosRecibidos(lo_planilla)
-
-
-                ''' INI RECONCILIACION
-                '''jsolis CONCILIAR
-                ''' Se muestra un mensaje de confirmacion
-                li_confirm = MessageBox.Show("Se va realizar la reconciliacion interna ,¿Esta seguro que desea continuar la reconciliación?", "caption", MessageBoxButtons.YesNoCancel)
+                ''jsolis orignal, cancelar plantilla
+                '' Se muestra un mensaje de confirmacion
+                li_confirm = MessageBox.Show("Al cancelar una planilla cerrada (procesada), se cancela todos los Pagos Recibidos creados en SAP Business One y el estado de la misma cambia a Abierto. ¿Esta seguro que desea cancelar la planilla?", "caption", MessageBoxButtons.YesNoCancel)
 
                 ' Se verifica el resultado del mensaje de confirmacion
                 If Not li_confirm = DialogResult.Yes Then
                     Exit Sub
                 End If
 
-                Sub_conciliar_asientoAjuste_pr(lo_planilla)
-                ''' FIN RECONCILIACION
+                ' Se realiza la cancelacion de cada uno de los pagos del detalle de Pagos Recibidos del objeto
+                Sub_cancelarPagosRecibidos(lo_planilla)
+
+
+                '''''' INI RECONCILIACION
+                ''''''jsolis CONCILIAR
+                '''''' Se muestra un mensaje de confirmacion
+                '''''li_confirm = MessageBox.Show("Se va realizar la reconciliacion interna ,¿Esta seguro que desea continuar la reconciliación?", "caption", MessageBoxButtons.YesNoCancel)
+
+                ''''''Se verifica el resultado del mensaje de confirmacion
+                '''''If Not li_confirm = DialogResult.Yes Then
+                '''''    Exit Sub
+                '''''End If
+
+                '''''Sub_conciliar_asientoAjuste_pr(lo_planilla)
+                '''''' FIN RECONCILIACION
 
 
             End If
@@ -1423,6 +1440,87 @@ Public Class classProcesarPlanilla
             sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
         End Try
     End Sub
+
+    Private Sub sub_reconciliarPlanilla(ByVal ps_estado As String)
+        Try
+
+            ' Se muestra un mensaje de confirmacion
+            Dim li_confirm As Integer = -1
+
+            ' Se declara una variable para el resultado de la operacion
+            Dim ls_res As String = ""
+
+            ' Se obtiene la entidad
+            Dim lo_planilla As entPlanilla = obj_obtenerEntidad()
+
+            ' Se obtiene el control con el Id del objeto
+            Dim lo_txt As TextEdit = ctr_obtenerControl("id", o_form.Controls)
+
+            ' Se verifica si se obtuvo el control
+            If lo_txt Is Nothing Then
+                Exit Sub
+            End If
+
+            ' Se obtiene el id desde el control
+            Dim li_id As Integer = obj_obtValorControl(lo_txt)
+
+            ' Se obtiene la entidad por codigo
+            lo_planilla = lo_planilla.obj_obtPorCodigo(li_id)
+
+            ' Se verifica el estado: Si la planilla esta abierta ("O"), se cambia el estado del objeto a Cancelado
+            If ps_estado = "O" Then
+
+                ' Se muestra un mensaje de confirmacion
+                li_confirm = MessageBox.Show("Al cancelar una planilla abierta, el estado de la misma cambiará a Cancelado. Luego de ello, no podrá realizar modificaciones. ¿Esta seguro que desea cancelar la planilla?", "caption", MessageBoxButtons.YesNoCancel)
+
+                ' Se verifica el resultado del mensaje de confirmacion
+                If Not li_confirm = DialogResult.Yes Then
+                    Exit Sub
+                End If
+
+                ' Se asigna el nuevo Estado 
+                lo_planilla.Estado = "A"
+
+                ' Se actualiza el objeto
+                ls_res = lo_planilla.str_actualizar
+
+                ' Se verifica el resultado de la operacion
+                If ls_res.Trim = "" Then
+                    sub_mostrarMensaje("Se cancelo la planilla de manera correcta", System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.exito)
+                    sub_asignarEstadoObjeto("A")
+                Else
+                    sub_mostrarMensaje("No se pudo actualizar el estado de la planilla.", System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_sis)
+                End If
+
+            Else
+
+                ' Se valida que no exista documentos a revertir en otra otra planilla abierta
+                If bol_valDocsECEnPllAbiertasAlAnadir() = False Then
+                    Exit Sub
+                End If
+
+
+                ' INI RECONCILIACION
+                'jsolis CONCILIAR
+                ' Se muestra un mensaje de confirmacion
+                li_confirm = MessageBox.Show("Se va realizar la reconciliacion interna ,¿Esta seguro que desea continuar la reconciliación?", "caption", MessageBoxButtons.YesNoCancel)
+
+                'Se verifica el resultado del mensaje de confirmacion
+                If Not li_confirm = DialogResult.Yes Then
+                    Exit Sub
+                End If
+
+                Sub_conciliar_asientoAjuste_pr(lo_planilla)
+                ' FIN RECONCILIACION
+
+
+            End If
+
+        Catch ex As Exception
+            sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
+        End Try
+    End Sub
+
 
     Private Sub Sub_cancelarPagosRecibidos(ByVal po_planilla As entPlanilla)
         Try
@@ -1585,207 +1683,6 @@ Public Class classProcesarPlanilla
 
 
 
-
-            ''''' INI RECONCILIACION JSOLIS
-
-            ''' Se declara una variable para el resultado
-            ''Dim li_resultado As Integer = 0
-            ''Dim ls_mensaje As String = ""
-
-            ''' Se realiza la conexion a SAP Business One
-            ''Dim lo_SBOCompany As SAPbobsCOM.Company = entComun.sbo_conectar(s_SAPUser, s_SAPPass)
-
-            ''' Se verifica si se realizo la conexion hacia SAP Business One
-            ''If lo_SBOCompany Is Nothing Then
-            ''    sub_mostrarMensaje("No se realizó la conexión a SAP Business One.", System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_sis)
-            ''    Exit Sub
-            ''End If
-
-            ''' Se obtiene el progressBar asociado al proceso
-            ''Dim lo_progressBar As System.Windows.Forms.ProgressBar = ctr_obtenerControl("progresoPlanilla", o_form.Controls)
-
-
-
-            ''If Not lo_progressBar Is Nothing Then
-            ''    lo_progressBar.Maximum = po_planilla.PagosR.int_contar
-            ''    lo_progressBar.Minimum = 0
-            ''End If
-
-            ''' Se inicia la transaccion de SAP Business One
-            ''If bol_iniciarTransSBO(lo_SBOCompany) = False Then
-            ''    Exit Sub
-            ''End If
-
-            ''' Se recorre los pagos recibidos generados en la planilla
-            ''For Each lo_pagoR As entPlanilla_PagosR In po_planilla.PagosR.lstObjs
-
-
-            ''    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            ''    ' Se declara un objeto de Payment de SAP Business One
-            ''    Dim lo_payment As Payments
-
-            ''    Dim companyService As CompanyService = lo_SBOCompany.GetCompanyService()
-            ''    Dim service As InternalReconciliationsService = companyService.GetBusinessService(ServiceTypes.InternalReconciliationsService)
-
-            ''    ' Crear transacciones abiertas para reconciliación
-            ''    Dim openTrans As InternalReconciliationOpenTrans = service.GetDataInterface(InternalReconciliationsServiceDataInterfaces.irsInternalReconciliationOpenTrans)
-            ''    Dim reconParams As InternalReconciliationParams = service.GetDataInterface(InternalReconciliationsServiceDataInterfaces.irsInternalReconciliationParams)
-
-            ''    ' Especificar que la reconciliación es para un socio de negocio (cliente o proveedor)
-            ''    openTrans.CardOrAccount = CardOrAccountEnum.coaCard
-
-            ''    'obtener TransId del PR
-            ''    'dte_obtFechaContabPago(lo_planillaDet.FechaPago)
-            ''    Dim TransId_PR As Integer
-            ''    TransId_PR = 0
-
-            ''    TransId_PR = dte_obtTransIdPagoRecibido(lo_pagoR.DocEntryTr)
-            ''    'lo_pagoR.DocEntryTr = TransId_PR
-
-
-            ''    ' Se inicializa el objeto
-            ''    'PAGOS RECIBIDO
-            ''    ' Agregar primera línea de transacción
-            ''    openTrans.InternalReconciliationOpenTransRows.Add()
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(0).Selected = BoYesNoEnum.tYES
-            ''    'openTrans.InternalReconciliationOpenTransRows.Item(0).TransId = li_resultado ' ID del documento
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(0).TransId = TransId_PR ' ID del documento
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(0).TransRowId = 1 ' Línea del documento
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(0).ReconcileAmount = 86.41 ' Monto a reconciliar
-
-            ''    'ASIENTO
-            ''    ' Agregar segunda línea de transacción1
-            ''    openTrans.InternalReconciliationOpenTransRows.Add()
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(1).Selected = BoYesNoEnum.tYES
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(1).TransId = lo_pagoR.LineaTran ' ID del otro documento
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(1).TransRowId = 0
-            ''    openTrans.InternalReconciliationOpenTransRows.Item(1).ReconcileAmount = 86.41
-
-            ''    ' Ejecutar la reconciliación
-            ''    Try
-            ''        reconParams = service.Add(openTrans)
-            ''        'Existo
-
-
-            ''    Catch ex As Exception
-
-            ''        ' Ocurrio un error al obtener el Pago Recibido
-            ''        sub_mostrarMensaje("Ocurrio al intentar reconciliar interno por Socio de Negocio " & ex.ToString(), System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_sap)
-
-            ''        ' Se revierte la transaccion
-            ''        bol_RollBackTransSBO(lo_SBOCompany)
-
-            ''        ' Se desconecta la compañia 
-            ''        lo_SBOCompany.Disconnect()
-
-            ''        ' Se resetea el progressBar
-            ''        sub_resetProgressBar(lo_progressBar)
-
-            ''        ' Se retorna un error
-            ''        Exit Sub
-
-
-            ''        ''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            ''        ' Se muestra un mensaje de error de SAP
-            ''        sub_errorProcesoSAP(lo_SBOCompany)
-
-
-
-
-            ''    End Try
-
-
-
-            ''    'RECONCILIACION
-
-
-
-            ''    ' Se incrementa el valor del progressBar
-            ''    sub_incrementarProgressBar(lo_progressBar)
-
-
-            ''    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-            ''Next
-
-
-            ''''INI
-            '''''asiento
-            ''''Dim lo_payment As Payments
-
-            ''''' Se inicializa el objeto
-            ''''lo_payment = lo_SBOCompany.GetBusinessObject(BoObjectTypes.ite)
-
-            '''Dim oJournalEntry As JournalEntries
-            '''oJournalEntry = lo_SBOCompany.GetBusinessObject(BoObjectTypes.oJournalEntries)
-
-            '''' 5. Buscar el asiento por su número
-            '''Dim asientoID As Integer = 1369959 ' Reemplaza con el número de asiento que deseas cancelar
-            '''If oJournalEntry.GetByKey(asientoID) Then
-            '''    ' 6. Cancelar el asiento
-            '''    If oJournalEntry.Cancel() = 0 Then
-            '''        Console.WriteLine("Asiento cancelado correctamente.")
-            '''    Else
-            '''        Console.WriteLine("Error al cancelar el asiento: " & lo_SBOCompany.GetLastErrorDescription())
-            '''        Dim resp As String
-            '''        'errpres
-            '''        resp = lo_SBOCompany.GetLastErrorDescription()
-
-
-
-            '''    End If
-            '''Else
-            '''    Console.WriteLine("Asiento no encontrado.")
-            '''End If
-            ''''FIN
-
-            '''''jsolis
-
-
-            ''' Se confirma la transaccion
-            ''If li_resultado = 0 Then
-
-            ''    ' Se confirma la transaccion
-            ''    Dim ls_resPla As String = str_CommitTransSBO(lo_SBOCompany)
-
-            ''    ' Se actualiza el objeto de la planilla
-            ''    If ls_resPla.Trim = "" Then
-
-            ''        ' Se actualiza el objeto de la planilla
-            ''        po_planilla.Estado = "O"
-            ''        ls_resPla = po_planilla.str_actualizar()
-
-            ''        ' Se muestra un mensaje que indica que el proceso se realizó con exito
-            ''        sub_mostrarMensaje("Se de Reconciliacion la planilla de manera exitosa. (Número de : " & po_planilla.PagosR.int_contar.ToString & "). " & ls_resPla, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.exito)
-            ''        sub_asignarEstadoObjeto("O")
-
-            ''    Else
-            ''        sub_mostrarMensaje("Ocurrió un error al intentar reconciliar en SAP: " & ls_resPla & "", System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_sap)
-            ''    End If
-
-            ''Else
-
-            ''    ' Se revierte la transaccion
-            ''    bol_RollBackTransSBO(lo_SBOCompany)
-
-            ''    ' Se muestra un mensaje que indica que ocurrió un error en el proceso
-            ''    sub_mostrarMensaje("Ocurrió un error durante la ejecución del proceso", System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_sap)
-
-            ''End If
-
-            ''' Se desconecta la compañia 
-            ''lo_SBOCompany.Disconnect()
-
-            ''' Se resetea el progressBar
-            ''sub_resetProgressBar(lo_progressBar)
-
-            ''''' FIN RECONCILIACION JSOLIS
-
-
-
-
-
-
         Catch ex As Exception
             sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
         End Try
@@ -1934,39 +1831,6 @@ Public Class classProcesarPlanilla
             Next
 
 
-            ''INI
-            '''asiento
-            ''Dim lo_payment As Payments
-
-            ''' Se inicializa el objeto
-            ''lo_payment = lo_SBOCompany.GetBusinessObject(BoObjectTypes.ite)
-
-            'Dim oJournalEntry As JournalEntries
-            'oJournalEntry = lo_SBOCompany.GetBusinessObject(BoObjectTypes.oJournalEntries)
-
-            '' 5. Buscar el asiento por su número
-            'Dim asientoID As Integer = 1369959 ' Reemplaza con el número de asiento que deseas cancelar
-            'If oJournalEntry.GetByKey(asientoID) Then
-            '    ' 6. Cancelar el asiento
-            '    If oJournalEntry.Cancel() = 0 Then
-            '        Console.WriteLine("Asiento cancelado correctamente.")
-            '    Else
-            '        Console.WriteLine("Error al cancelar el asiento: " & lo_SBOCompany.GetLastErrorDescription())
-            '        Dim resp As String
-            '        'errpres
-            '        resp = lo_SBOCompany.GetLastErrorDescription()
-
-
-
-            '    End If
-            'Else
-            '    Console.WriteLine("Asiento no encontrado.")
-            'End If
-            ''FIN
-
-            '''jsolis
-
-
             ' Se confirma la transaccion
             If li_resultado = 0 Then
 
@@ -2005,10 +1869,6 @@ Public Class classProcesarPlanilla
             sub_resetProgressBar(lo_progressBar)
 
             ''' FIN RECONCILIACION JSOLIS
-
-
-
-
 
 
         Catch ex As Exception
@@ -2285,7 +2145,7 @@ Public Class classProcesarPlanilla
                             'lo_jrnlEntry.Lines.AccountCode = po_planillaDet.Cuenta '; // Código de cuenta
                             lo_jrnlEntry.Lines.ShortName = po_planillaDet.Codigo '; // Código de cuenta
                             'lo_jrnlEntry.Lines.AccountCode = "_SYS00000000089" '; // Código de cuenta
-                            lo_jrnlEntry.Lines.Debit = System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo + 0.01) '46.01 '; // Monto del débito
+                            lo_jrnlEntry.Lines.Debit = System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo) '46.01 '; // Monto del débito
                             lo_jrnlEntry.Lines.Credit = 0.0 '; // Monto del crédito
                             lo_jrnlEntry.Lines.Add()
 
@@ -2294,9 +2154,9 @@ Public Class classProcesarPlanilla
                             'lo_jrnlEntry.Lines.AccountCode = entComun.str_obtenercuentaGananciaDiferenciaTCv2()   ' // Código de cuenta
                             lo_jrnlEntry.Lines.AccountCode = cuentaGanacia
                             lo_jrnlEntry.Lines.Debit = 0.0 '// Monto del débito
-                            lo_jrnlEntry.Lines.Credit = System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo + 0.01) '// Monto del crédito
+                            lo_jrnlEntry.Lines.Credit = System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo) '// Monto del crédito
 
-                            montoreconciliaciont = System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo + 0.01)
+                            montoreconciliaciont = System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo)
 
                             lo_jrnlEntry.Lines.Add()
 
@@ -2326,18 +2186,16 @@ Public Class classProcesarPlanilla
 
 
                             lo_jrnlEntry.Lines.AccountCode = cuentaPerdida
-                            lo_jrnlEntry.Lines.Debit = (System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo) + 0.01) '// Monto del crédito '0.0 '// Monto del débito
+                            lo_jrnlEntry.Lines.Debit = (System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo)) '// Monto del crédito '0.0 '// Monto del débito
                             lo_jrnlEntry.Lines.Credit = 0.0
                             lo_jrnlEntry.Lines.Add()
 
-                            'dbl_obtenercuentaGananciaDiferenciaTC
-                            ' Agregar líneas de asiento _SYS00000000089
-                            'lo_jrnlEntry.Lines.AccountCode = po_planillaDet.Cuenta '; // Código de cuenta
+
                             lo_jrnlEntry.Lines.ShortName = po_planillaDet.Codigo '; // Código de cuenta
                             'lo_jrnlEntry.Lines.AccountCode = "_SYS00000000089" '; // Código de cuenta
                             lo_jrnlEntry.Lines.Debit = 0.0 '(tcFinanciero - tcFechaPago) * po_planillaDet.Saldo '46.01 '; // Monto del débito
-                            lo_jrnlEntry.Lines.Credit = (System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo) + 0.01) '0.0 '; // Monto del crédito
-                            montoreconciliaciont = (System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo) + 0.01) * (-1)
+                            lo_jrnlEntry.Lines.Credit = (System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo)) '0.0 '; // Monto del crédito
+                            montoreconciliaciont = (System.Math.Abs((tcFinanciero - tcFechaPago) * po_planillaDet.Saldo)) * (-1)
                             lo_jrnlEntry.Lines.Add()
 
 

@@ -1913,6 +1913,23 @@ Public Class classComun
         End Try
     End Function
 
+    Protected Function dbl_obtCuentaGanancia_pc() As String
+        Try
+
+            ' Se obtiene el tipo de cambio para la fecha y la moneda recibida
+            Dim ld_tipoCambio As String = entComun.dbl_obtCuentaGanancia_pc_()
+            'Dim ld_tipoCambio As Double = entComun.dbl_obtenerTipoCambio(ps_moneda, ps_fecha)
+
+            Return ld_tipoCambio
+
+
+        Catch ex As Exception
+            sub_mostrarMensaje(ex.Message, System.Reflection.Assembly.GetExecutingAssembly.GetName.Name, Me.GetType.Name.ToString, System.Reflection.MethodInfo.GetCurrentMethod.Name, enm_tipoMsj.error_exc)
+            Return ""
+        End Try
+    End Function
+
+
     'cuenta Ganancia Diferencia TC
     Protected Function dbl_obtenercuentaGananciaDiferenciaTC(ByVal val1 As String) As String
         Try

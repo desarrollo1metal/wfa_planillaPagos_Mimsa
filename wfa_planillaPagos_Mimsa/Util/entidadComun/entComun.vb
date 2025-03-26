@@ -315,9 +315,14 @@ Public Class entComun
         Return ModuleSQLComun.dtb_obtEstructuraTabla(ps_tabla)
     End Function
 
+    Public Shared Function dbl_obtCuentaGanancia_pc_() As String
+        Return ModuleSQLComun.dbl_obtCuentaGanancia_pl()
+    End Function
+
     Public Shared Function dbl_obtenerTipoCambio(ByVal ps_moneda As String, ByVal ps_fecha As String) As Double
         Return ModuleSQLComun.dbl_obtenerTipoCambio(ps_moneda, ps_fecha)
     End Function
+
 
     Public Shared Function dbl_obtenercuentaGananciaDiferenciaTC(ByVal val As String) As String
         Return ModuleSQLComun.str_cuentaGananciaDiferenciaTC(val)
